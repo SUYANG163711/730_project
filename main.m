@@ -1,39 +1,39 @@
-clc;
-clear;
+clc ;
+清除;
 
 %% 参数设置
-n = 7; % RS 码字长度
-k = 3; % 信息长度
-gf_domain = 3; % 有限域 GF(2^3)
+n = 7 ; % RS码字长度
+k = 3； % 信息长度
+gf_域 = 3 ; % 有限域GF ( 2 ^ 3 )
 
-% RS 生成矩阵
-g = [1 0 0 3 2 1 3; 
-     0 1 0 5 5 1 4; 
-     0 0 1 7 6 1 6];
-g = gf(g, gf_domain);
+% RS生成矩阵
+g = [ 1  0  0  3  2  1  3 ;
+     0  1  0  5  5  1  4 ;
+     0  0  1  7  6  1  6 ] ;
+g = gf ( g , gf_domain ) ;
 
 %% 所有可能的信号
-all_msg = a_msg();
-all_msg_gf = gf(all_msg, gf_domain);
-all_code_msg = rs_rscode(all_msg_gf, g);
+all_msg = a_msg ( ) ;
+all_msg_gf = gf ( all_msg, gf_domain ) ;
+all_code_msg = rs_rscode ( all_msg_gf, g ) ;
 
-%% 生成随机信号并编码
-msg = floor(rand(5, k) * 8);
-MSG = gf(msg, gf_domain);
-code = rs_rscode(MSG, g);
+%%生成随机信号并编码
+味精=下限(兰特( 5 , k ) * 8 ) ;
+MSG = gf (味精, gf_domain ) ;
+代码= rs_rscode ( MSG , g ) ;
 
-disp('随机生成的原始信号：');
-disp(msg);
+disp ( '随机生成的原始信号：' ) ;
+显示（消息）；
 
-disp('RS 编码后的码字：');
-disp(double(code.x));
+disp ( ' RS编码后的码字：' ) ;
+disp (双精度(代码.x ) ) ;
 
-%% 添加噪声
-noise = [zeros(5, k), floor(rand(5, n - k) * 8)];
-NOISE = gf(noise, gf_domain);
-in_msg = code + NOISE;
+%%增加噪声
+噪声= [零( 5 , k ) ,下限(兰特( 5 , n - k ) * 8 ) ] ;
+噪声= gf (噪声, gf_domain ) ;
+in_msg =代码+噪音；
 
-disp('加噪后的信号：');
+disp ( '加扰后的信号：' ) ;
 disp(double(in_msg.x));
 
 %% RS 译码
