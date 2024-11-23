@@ -4,7 +4,7 @@ function x = a_msg()
     for i = 0:7
         for j = 0:7
             for k = 0:7
-                x = [x; i, j, k]; % 将所有信号排列
+                x = [x; i, j, k]; %将所有信号排列
             end
         end
     end
